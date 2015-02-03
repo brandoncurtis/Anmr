@@ -1,0 +1,23 @@
+#fileName: defaults.include
+
+#definitions to do something
+#these are standard pin assignments:
+%receiver_connect = 4
+%transmitter_connect = 5
+%short_rec_coil = 6
+
+
+%polarise_enable = 8
+%short_pol_coil = 7
+
+%pulse_plus = 2
+%pulse_minus = 3
+
+%sync_signal = 9
+# pin 9 is also hardcoded as an input in the arduino code.
+
+#was: polarize_enable 8 , short_pol_coil 7, sync_signal 9
+
+#that last one is an input!
+
+SET_PULSE_PINS %pulse_plus %pulse_minus

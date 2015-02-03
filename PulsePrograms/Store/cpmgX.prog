@@ -1,0 +1,67 @@
+#DEFINITIONS
+#frequency 100 3000 2270 Hz
+#polarization_time 10 10000 3000 ms
+#90_half_cycles 0 20 4 ''
+#echo_delay 0 5000 50 ms
+#180_half_cycles 0 20 8 ''
+#receiver_delay 0 5000 15 ms
+#repetition_delay 0 7000 1000 ms
+#num_points 1 20000 1000 ''
+#END
+              
+#other parameters
+%relay_delay = 2
+
+#set relays up:
+CHANGE_PIN %short_pol_coil 0
+CHANGE_PIN %pulse_plus 0
+CHANGE_PIN %pulse_minus 0
+CHANGE_PIN %transmitter_connect 0
+CHANGE_PIN %receiver_connect 0
+CHANGE_PIN %short_rec_coil 1 # short the detection coil
+SET_FREQ %frequency
+
+DELAY_IN_MS 20 
+
+#do the polarization step:
+CHANGE_PIN %polarise_enable 1 
+DELAY_IN_MS %polarization_time
+
+#turn off the polarization:
+CHANGE_PIN %polarise_enable 0
+DELAY_IN_MS 50
+
+#flip relays:
+CHANGE_PIN %transmitter_connect 1
+CHANGE_PIN %short_pol_coil 1
+DELAY_IN_MS 10
+CHANGE_PIN %short_rec_coil 0
+DELAY_IN_MS 40
+
+#do the first pulse
+PULSE 0 180 1 %90_half_cycles
+
+#echo delay:
+
+DELAY_IN_MS %echo_delay
+
+SYNC
+LOOP 6
+
+#second pulse:
+PULSE 0 0 1 %180_half_cycles
+
+DELAY_IN_MS %relay_delay
+CHANGE_PIN %receiver_connect 1
+DELAY_IN_MS %relay_delay
+CHANGE_PIN %transmitter_connect 0
+DELAY_IN_MS 6
+DELAY_IN_MS %receiver_delay
+
+READ_DATA 0 180 1 %num_points
+CHANGE_PIN %receiver_connect 0
+CHANGE_PIN %transmitter_connect 1
+END_LOOP
+
+CHANGE_PIN %short_pol_coil 0
+DELAY_IN_MS %repetition_delay

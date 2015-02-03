@@ -1,0 +1,10 @@
+#DEFINITIONS
+#pin_num 4 9 4
+#on_time 0 1000 500
+#off_time 0 1000 500
+#END
+
+CHANGE_PIN %pin_num 1
+DELAY_IN_MS %on_time 
+CHANGE_PIN %pin_num 0
+DELAY_IN_MS %off_time 

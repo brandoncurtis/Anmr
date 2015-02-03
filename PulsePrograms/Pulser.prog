@@ -1,0 +1,29 @@
+#DEFINITIONS
+#frequency 100 3000 2270 ''
+#pulse1_half_cycles 0 20 4 ''
+#delay 0 5000 1 ms
+#pulse2_half_cycles 0 20 8 ''
+#repetition_delay 0 7000 1000 ''
+#END
+             
+
+
+#set relays up:
+CHANGE_PIN %short_pol_coil 0
+CHANGE_PIN %pulse_plus 0
+CHANGE_PIN %pulse_minus 0
+CHANGE_PIN %transmitter_connect 0
+CHANGE_PIN %receiver_connect 0
+CHANGE_PIN %short_rec_coil 0
+SET_FREQ %frequency
+
+DELAY_IN_MS 20
+
+
+PULSE 0 0 1 %pulse1_half_cycles
+
+DELAY_IN_MS %delay
+
+PULSE 0 0 1 %pulse2_half_cycles
+
+DELAY_IN_MS %repetition_delay

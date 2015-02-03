@@ -1,0 +1,96 @@
+PULSE_PROGRAM
+#fileName: definitions.hanmr
+
+#definitions to do something
+#these are standard pin assignments:
+%polarise_enable = 12
+%short_pol_coil = 11
+%transmitter_connect = 9
+%receiver_connect = 8
+%short_rec_coil = 10
+%sync_signal = 13
+%pulse_plus = 2
+%pulse_minus = 3
+#that last one is an input!
+#knowledge of these pins also exists in the arduino server
+
+#to power the thing
+CHANGE_PIN 7 1
+%frequency = 2153
+%polarization_time = 3000
+%90_half_cycles = 6
+%echo_delay = 50
+%180_half_cycles = 15
+%receiver_delay = 5
+%num_points = 1000
+%repetition_delay = 3000
+#DEFINITIONS
+#frequency 100 3000 2153 Hz
+#polarization_time 10 10000 3000 ms
+#90_half_cycles 0 20 6 ''
+#echo_delay 0 5000 50 ms
+#180_half_cycles 0 20 12 ''
+#receiver_delay 0 5000 15 ms
+#repetition_delay 0 7000 3000 ms
+#num_points 1 20000 1000 ''
+#END
+              
+#other parameters
+%relay_delay = 2
+
+#set relays up:
+CHANGE_PIN %short_pol_coil 0
+CHANGE_PIN %pulse_plus 0
+CHANGE_PIN %pulse_minus 0
+CHANGE_PIN %transmitter_connect 0
+CHANGE_PIN %receiver_connect 0
+CHANGE_PIN %short_rec_coil 1 # short the detection coil
+SET_FREQ %frequency
+
+DELAY_IN_MS 20 
+
+#do the polarization step:
+CHANGE_PIN %polarise_enable 1 
+DELAY_IN_MS %polarization_time
+
+#turn off the polarization:
+CHANGE_PIN %polarise_enable 0
+DELAY_IN_MS 50
+
+#flip relays:
+CHANGE_PIN %transmitter_connect 1
+CHANGE_PIN %short_pol_coil 1
+DELAY_IN_MS 10
+CHANGE_PIN %short_rec_coil 0
+DELAY_IN_MS 40
+
+#do the first pulse
+PULSE 2 %90_half_cycles
+
+#echo delay:
+
+DELAY_IN_MS %echo_delay
+
+SYNC
+LOOP 1
+
+#second pulse:
+PULSE 0 %180_half_cycles
+
+DELAY_IN_MS %relay_delay
+CHANGE_PIN %receiver_connect 1
+DELAY_IN_MS %relay_delay
+CHANGE_PIN %transmitter_connect 0
+DELAY_IN_MS 6
+DELAY_IN_MS %receiver_delay
+
+READ_DATA 2 %num_points
+CHANGE_PIN %receiver_connect 0
+CHANGE_PINE %transmitter_connect 1
+END_LOOP
+
+CHANGE_PIN %short_pol_coil 0
+DELAY_IN_MS %repetition_delay
+#from: cpmg.prog
+#date: Tue Nov 29 2011
+#time: 18:35:47

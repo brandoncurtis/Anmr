@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Anmr
+Comment=
+Exec=/usr/local/bin/Anmr.py
+Icon=/usr/local/share/Anmr/Icons/Anmr-icon.svg
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=Education;Science

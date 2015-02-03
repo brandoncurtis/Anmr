@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=FuncGen
+Comment=
+Exec=/usr/local/bin/FuncGen.py
+Icon=/usr/local/share/Anmr/Icons/FuncGen-icon.svg
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=Education;Science

@@ -1,0 +1,17 @@
+#define END_OF_PROGRAM 0
+#define START_OF_PROGRAM 1
+#define DELAY_IN_CLOCKS 2
+#define DELAY_IN_MS 3
+#define CHANGE_PIN 4
+#define WAIT_FOR_PIN 5
+#define SET_PULSE_PINS 6
+#define PULSE 7
+#define READ_DATA 8
+#define GO 9
+#define SET_FREQ 10
+#define LOOP 11
+#define END_LOOP 12
+#define SYNC 13
+#define QUERY 14
+#define TOGGLE_PIN 15
+#define TABLE 16

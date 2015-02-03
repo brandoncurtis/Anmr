@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Shim
+Comment=
+Exec=/usr/local/bin/Shim.py
+Icon=/usr/local/share/Anmr/Icons/Shim-icon.svg
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=Education;Science

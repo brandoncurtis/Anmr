@@ -1,0 +1,80 @@
+To install on windows, you will need: 
+
+Python 2.7 
+----------
+From:
+http://www.python.org/download/releases/2.7.3/ 
+choose the Windows x86 (32 bit) MSI installer. Don't get the 64 bit
+version, even if your windows is 64 bit.
+
+NumPy
+-----
+From:
+http://sourceforge.net/projects/numpy/files/NumPy/1.6.2/
+get the superpack for python 2.7
+
+Matplotlib
+----------
+From:
+https://github.com/matplotlib/matplotlib/downloads/
+get the win32 version for py2.7
+
+Pyserial
+--------
+From:
+https://sourceforge.net/projects/pyserial/files/pyserial/2.5/
+get the win32 version
+
+PyGtk
+-----
+From:
+http://ftp.gnome.org/pub/GNOME/binaries/win32/pygtk/2.24/
+get pygtk-all-in-one-2.24.2.win32-py2.7.msi
+
+SciPy
+-----
+From: 
+http://sourceforge.net/projects/scipy/files/scipy/0.11.0/
+get the win32 superpack for python 2.7
+
+pywin32
+-------
+From:
+http://sourceforge.net/projects/pywin32/files/pywin32/Build%20218/
+get the win32 version for python 2.7
+
+Python Imaging Library
+----------------------
+From:
+http://www.pythonware.com/products/pil/
+get 1.1.7 for Python 2.7
+
+Sox (for producing audio in FuncGen)
+---
+From:
+http://sourceforge.net/projects/sox/files/sox/14.4.0/
+get the win32 exe
+
+Then, do something like:
+
+mkdir c:\Anmr
+move arduinoCode C:\Anmr\
+move avrdude c:\Anmr\
+move bin c:\Anmr\
+move Icons C:\Anmr\
+move PulsePrograms C:\Anmr\
+
+Then edit c:\Anmr\bin\anmr_platform_win.py and ensure that the
+SOX_EXEC, AVRDUDE and AVRDUDE_CONF symbols point to right programs.
+
+If all went well, you should be able to double click on the Anmr.py, 
+FuncGen.py or Shim.py icons. (There are some shortcuts provided too).
+
+You have the option of using hub4com and com0com to create a virtual
+serial pipe that allows quicker response at the start of each data
+set. To use these, install com0com, setting up a COMn-COMn port pair
+(ie uses the 'ports' class), and the install hub4com and ensure the
+path to it is correct in anmr_platform_win.py
+
+
+

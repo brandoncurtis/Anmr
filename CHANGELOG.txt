@@ -1,0 +1,6 @@
+Anmr-1.0
+- improved image reconstruction algorithm that gets the ramp function correct.
+- lots of updates to make the code more python3 ready.
+- more flexible pulse programming - allows phase tables in addition to
+  simple modulation schemes.
+- Updates to the arduino firmware so that it works with recent arduino releases (1.0.4 here).

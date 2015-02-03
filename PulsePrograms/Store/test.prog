@@ -1,0 +1,29 @@
+#DEFINITIONS
+#num_points 1 2000000 20000 ''
+#pulse_time 1 5000 2000 ''
+#END
+             
+
+
+
+#set relays up:
+CHANGE_PIN %short_pol_coil 0
+CHANGE_PIN %pulse_plus 0
+CHANGE_PIN %pulse_minus 0
+CHANGE_PIN %transmitter_connect 0
+DELAY_IN_MS %pulse_time
+
+
+
+CHANGE_PIN %short_pol_coil 1
+DELAY_IN_MS 150
+CHANGE_PIN %receiver_connect 1
+
+
+READ_DATA 0 0 1  %num_points
+CHANGE_PIN %receiver_connect 0
+
+CHANGE_PIN %short_pol_coil 0
+
+DELAY_IN_MS 50
+
